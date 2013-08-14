@@ -12,7 +12,7 @@ module.exports = {
       if (err) return res.send(err, 500);
       if (!auction) return res.send("No other chicken with that id exists!", 404);
 
-      auction.price += 1;
+      auction.price += 0.01;
 
       auction.save(function (err) {
         if (err) return res.send(err, 500);
