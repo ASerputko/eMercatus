@@ -25,7 +25,7 @@
 		},
 
 		priceChanged: function () {
-			this.$('.price').text(this.model.get('price'));
+			this.$('.price').text(this.model.getPrice({fixed: 2}));
 		}
 
 	});

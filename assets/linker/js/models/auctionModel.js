@@ -31,6 +31,14 @@
 			attributes.price = attributes.price.toFixed(2);
 
 			return attributes;
+		},
+
+		getPrice: function (options) {
+			if (options.fixed) {
+				return this.get('price').toFixed(options.fixed);
+			} else {
+				return this.get('price');
+			}
 		}
 		
 	});
