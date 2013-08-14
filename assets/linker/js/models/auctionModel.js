@@ -24,6 +24,13 @@
 					options.success(response);
 				});
 			}
+		},
+
+		toHTML: function () {
+			var attributes = _.clone(this.attributes);
+			attributes.price = attributes.price.toFixed(2);
+
+			return attributes;
 		}
 		
 	});
