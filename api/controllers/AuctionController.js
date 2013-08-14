@@ -13,6 +13,7 @@ module.exports = {
       if (!auction) return res.send("No other chicken with that id exists!", 404);
 
       auction.price += 0.01;
+      auction.price = Math.round(parseFloat(auction.price) * 100) / 100
 
       auction.save(function (err) {
         if (err) return res.send(err, 500);
