@@ -22,7 +22,6 @@ module.exports = {
 		type: 'FLOAT',
 		required: true
 	}
-    
   }
 
 };

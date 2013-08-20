@@ -7,10 +7,10 @@
 		urlRoot: '/auction/',
 
 		initialize: function () {
-			var model = this;
-			this.socket.on(this.url() + '/bid', function (response) {
-				model.set(response);
-			});
+			// var model = this;
+			// this.socket.on(this.url() + '/bid', function (response) {
+			// 	model.set(response);
+			// });
 		},
 
 		bidNow: function () {
@@ -28,14 +28,14 @@
 
 		toHTML: function () {
 			var attributes = _.clone(this.attributes);
-			attributes.price = attributes.price.toFixed(2);
+			attributes.price = parseFloat(attributes.price).toFixed(2);
 
 			return attributes;
 		},
 
 		getPrice: function (options) {
 			if (options.fixed) {
-				return this.get('price').toFixed(options.fixed);
+				return parseFloat(this.get('price')).toFixed(options.fixed);
 			} else {
 				return this.get('price');
 			}

@@ -11,4 +11,4 @@ sails.models = Modules.optional({
 	filter		: /(.+)\..+$/
 });
 
-console.log(sails.models.fustmodel.bid())
+console.log(sails.models.auction.t());

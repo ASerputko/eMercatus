@@ -9,12 +9,14 @@
 		url: '/auction',
 
 		initialize: function () {
-			// var collection = this;
-			// socket.on('connect', function () {
-			// 	socket.on('message', function (message) {
-			// 		collection.set([message.data], {merge: true});
-			// 	});
-			// });
+			var collection = this;
+			socket.on('connect', function () {
+				socket.on('message', function (message) {
+					console.log(message.data);
+					// collection.set([message.data], {merge: true});
+					collection.get(message.id).set(message.data)
+				});
+			});
 		},
 
 		sync: function (type, collection, options) {
