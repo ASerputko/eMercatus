@@ -39,6 +39,11 @@ module.exports.routes = {
   'put /auction/:id/bid': {
     controller: 'auction',
     action: 'bid'
+  },
+
+  'get /auction/performance': {
+    controller: 'auction',
+    action: 'performance'
   }
 
   /*

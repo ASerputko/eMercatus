@@ -17,24 +17,24 @@ module.exports.bootstrap = function (cb) {
 
 	sails.rabbitmq = sails.rabbitmq || amqp.createConnection({host: '192.168.240.120'});
 
-	sails.rabbitmq.on('ready', function () {
-		sails.rabbitmq.queue('rabbitMQ-auction', {autoDelete: false}, function (queue) {
-			queue.subscribe(function (message) {
-				var data = message.data.toString('utf-8'),
-					id = JSON.parse(data).id;
+	// sails.rabbitmq.on('ready', function () {
+	// 	sails.rabbitmq.queue('rabbitMQ-auction', {autoDelete: false}, function (queue) {
+	// 		queue.subscribe(function (message) {
+	// 			var data = message.data.toString('utf-8'),
+	// 				id = JSON.parse(data).id;
 
-				console.log(id);
-				Auction.findOne(id).exec(function (err, auction) {
+
+	// 			// Auction.findOne(id).exec(function (err, auction) {
   
-					auction.price += 0.01;
-					auction.price = Math.round(parseFloat(auction.price) * 100) / 100;
+	// 			// 	auction.price += 0.01;
+	// 			// 	auction.price = Math.round(parseFloat(auction.price) * 100) / 100;
 
-					auction.save(function (err) {
-						Auction.publishUpdate(auction.id, auction.toJSON());
-					});
-				});
-			});
-		});
-	});
+	// 			// 	auction.save(function (err) {
+	// 			// 		Auction.publishUpdate(auction.id, auction.toJSON());
+	// 			// 	});
+	// 			// });
+	// 		});
+	// 	});
+	// });
 	cb();
 };
