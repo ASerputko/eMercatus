@@ -36,5 +36,29 @@ module.exports.bootstrap = function (cb) {
 	// 		});
 	// 	});
 	// });
+
+    
+	Auction.create({name: 'Lot 1', price: 100, currency: 'USD'}, function () {});
+	Auction.create({name: 'Lot 2', price: 100, currency: 'USD'}, function () {});
+
+
+	sails.rabbitmq.on('ready', function () {
+		sails.rabbitmq.queue('rabbitMQ-auction', {autoDelete: false}, function (queue) {
+			queue.subscribe(function (message) {
+				var data = message.data.toString('utf-8'),
+					id = JSON.parse(data).id;
+
+					// console.log(JSON.parse(data))
+				// Auction.findOne(id).exec(function (err, auction) {
+				// 	auction.price += 0.01;
+				// 	auction.price = Math.round(parseFloat(auction.price) * 100) / 100
+
+				// 	auction.save(function (err) {
+				// 		Auction.publishUpdate(auction.id, auction.toJSON());
+				// 	});
+				// });
+			});
+		});
+	});
 	cb();
 };
