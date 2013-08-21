@@ -17,7 +17,7 @@ module.exports.bootstrap = function (cb) {
 	sails.rabbitmq.on('ready', function () {
 
 		if (sails.config.port === 3000) {
-			sails.rabbitmq.queue('rabbitMQAuctionSaved', {autoDelete: false}, function (queue) {
+			sails.rabbitmq.queue('MsgFromServerToClient', {autoDelete: false}, function (queue) {
 				queue.subscribe(function (message) {
 					var data = message.data.toString('utf-8'),
 						auction = JSON.parse(data);
