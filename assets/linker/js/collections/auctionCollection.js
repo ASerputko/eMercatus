@@ -12,7 +12,7 @@
 			var collection = this;
 			socket.on('connect', function () {
 				socket.on('message', function (message) {
-					console.log(message.data);
+					// console.log(message.data);
 					collection.get(message.id).set(message.data)
 				});
 			});
